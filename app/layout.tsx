@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: 'Descubra se você já pode beber sim ou não.',
     type: 'website',
     images: [
-      { url: './beer.png', width: 1200, height: 630, alt: 'cerveja img' },
+      { url: 'beer.png', width: 1200, height: 630, alt: 'cerveja img' },
     ],
   },
 }

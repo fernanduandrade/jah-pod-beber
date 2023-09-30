@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Zequinha from '../../public/zequinha.png'
+import Zequinha from '../public/zequinha.png'
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24">
