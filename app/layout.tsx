@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Jah pode beber?',
   description: 'Descubra se está liberado beber sim ou não.',
-  keywords: 'tá liberado beber, beber, tomar uma, beber uma cerveja, já pode beber?', 
+  keywords: 'tá liberado beber, beber, tomar uma, beber uma cerveja, já pode beber?, bora tomar uma?, tá liberado?', 
   authors: { name: 'He4rt Devs', url: 'https://heartdevs.com/' },
   openGraph: {
     title: 'Jah pode beber?',
