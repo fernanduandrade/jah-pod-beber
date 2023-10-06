@@ -11,10 +11,10 @@ export const metadata: Metadata = {
   authors: { name: 'He4rt Devs', url: 'https://heartdevs.com/' },
   openGraph: {
     title: 'Jah pode beber?',
-    description: 'Descubra se você já pode beber sim ou não.',
+    description: 'Será que já chegou a hora de al-mossar? Descubra',
     type: 'website',
     images: [
-      { url: 'beer.jpg', width: 1200, height: 630, alt: 'cerveja img' },
+      { url: 'beer.png', width: 1200, height: 630, alt: 'cerveja img' },
     ],
   },
 }
