@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Jah pode beber?',
-  description: 'Descubra se está liberado beber sim ou não.',
+  description: 'Será que já chegou a hora de al-mossar? Descubra',
   keywords: 'tá liberado beber, beber, tomar uma, beber uma cerveja, já pode beber?, bora tomar uma?, tá liberado?', 
   authors: { name: 'He4rt Devs', url: 'https://heartdevs.com/' },
   openGraph: {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: 'Descubra se você já pode beber sim ou não.',
     type: 'website',
     images: [
-      { url: 'beer.png', width: 1200, height: 630, alt: 'cerveja img' },
+      { url: 'beer.jpg', width: 1200, height: 630, alt: 'cerveja img' },
     ],
   },
 }
