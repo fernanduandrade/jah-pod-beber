@@ -1,14 +1,24 @@
+"use client"
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { Section } from './components/Section'
 import Zequinha from '../public/zequinha.png'
 import { twMerge } from 'tailwind-merge'
+import { useEffect } from 'react'
 export default function Home() {
+
+  useEffect(() => {
+    play()
+  }, [])
+
+  async function play() {
+    const audio = new Audio('som_latinha.mp3')
+    await audio.play()
+  }
+
   return (
     <main className="bg-green-600">
-      <audio autoPlay>
-        <source src="som_latinha.mp3"type="audio/mp3"></source>
-        </audio>
       <Section
         className={twMerge(
           "h-screen flex justify-center items-center flex-col relative"
