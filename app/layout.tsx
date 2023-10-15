@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: 'Será que já chegou a hora de beber? Descubra',
     type: 'website',
     images: [
-      { url: 'beer.png', width: 1200, height: 630, alt: 'cerveja img' },
+      { url: 'beer.png', width: 512, height: 512, alt: 'cerveja img' },
     ],
   },
 }
