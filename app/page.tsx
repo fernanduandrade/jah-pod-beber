@@ -10,7 +10,7 @@ import { useState, useEffect, useRef } from 'react'
 
 export default function Home() {
 
-  const animatedTextRef = useRef(null)
+  const animatedTextRef = useRef<HTMLAnchorElement>(null)
   const { width, height } = useWindowSize()
   const [zequinhaClicked, setZequinhaClicked] = useState(false)
   const [randomImagesData, setRandomImagesData] = useState([])
