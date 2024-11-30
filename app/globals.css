@@ -131,6 +131,7 @@ span:last-of-type {
     transparent 85%
   ) calc(var(--pos) * -200%) 0% / 200% 100%, var(--color);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
   z-index: 2;
   text-shadow: none;
