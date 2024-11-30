@@ -7,8 +7,8 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Jah pode beber?',
   description: 'Será que já chegou a hora de beber? Descubra',
-  keywords: 'tá liberado beber, beber, tomar uma, beber uma cerveja, já pode beber?, bora tomar uma?, tá liberado?', 
-  authors: { name: 'He4rt Devs', url: 'https://heartdevs.com/' },
+  keywords: 'tá liberado beber, beber cerveja, hora de beber, tomar uma, tomar cerveja, já pode beber?, bora tomar uma?, é hora de beber?, diversão, curiosidade sobre beber', 
+  authors: [{ name: 'He4rt Devs', url: 'https://heartdevs.com/' }, { name: 'Fernando Andrade', url: 'https://github.com/fernanduandrade' }],
   openGraph: {
     title: 'Jah pode beber?',
     description: 'Será que já chegou a hora de beber? Descubra',

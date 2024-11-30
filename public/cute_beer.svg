@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300" viewBox="0 0 200 300">
+  <!-- Corpo do copo de cerveja -->
+  <path 
+    d="M60,50 
+       Q55,30 80,30 
+       L120,30 
+       Q145,30 140,50 
+       L140,230 
+       Q145,250 120,250 
+       L80,250 
+       Q55,250 60,230 
+       Z" 
+    fill="#FFD700" 
+    stroke="white" 
+    stroke-width="8" 
+  />
+  <!-- Espuma da cerveja -->
+  <path 
+    d="M60,50 
+       Q70,30 100,40 
+       Q130,30 140,50" 
+    fill="#FFF" 
+    stroke="white" 
+    stroke-width="8" 
+  />
+  <!-- Carinha fofa -->
+  <!-- Olhos -->
+  <circle cx="85" cy="120" r="6" fill="#000" />
+  <circle cx="115" cy="120" r="6" fill="#000" />
+  <!-- Bochechas -->
+  <circle cx="75" cy="130" r="4" fill="#FFB6C1" />
+  <circle cx="125" cy="130" r="4" fill="#FFB6C1" />
+  <!-- Boca sorridente -->
+  <path 
+    d="M85,140 Q100,150 115,140" 
+    fill="none" 
+    stroke="#000" 
+    stroke-width="3" 
+    stroke-linecap="round"
+  />
+</svg>
