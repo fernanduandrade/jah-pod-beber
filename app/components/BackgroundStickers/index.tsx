@@ -41,7 +41,7 @@ export const BackgroundStickers = (props: BackgroundStickerProps) => {
             alt={`Imagem ${item.id}`}
             width={80 * item.size}
             height={60 * item.size}
-            className="animate-float-delayed h-auto"
+            className="animate-float-delayed h-auto overflow-hidden"
             style={{
               maxWidth: "10vw",
             }}

@@ -7,7 +7,7 @@ type SparklinTextProps = {
 export const SparklinText = (props: SparklinTextProps) => {
 
   return (
-    <div className='flex items-center z-50'>
+    <div className='flex items-center z-50 overflow-hidden'>
       <a href="#" className="trigger fade-in-right">
         <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
