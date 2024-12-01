@@ -11,7 +11,7 @@
   --color: #FFFFFF;
   --shadow: #f08c00;
   --glare: hsl(0 0% 100% / 0.75);
-  --font-size: clamp(5rem, 9vw, 6.5rem);
+  --font-size: clamp(6rem, 9vw, 6.5rem);
   --transition: 0.2s;
 }
 
@@ -99,10 +99,6 @@ a {
   transition: background 0.2s;
 }
 
-a:hover {
-  background: transparent;
-}
-
 span {
   display: inline-block;
   font-size: calc(var(--font-size) * 1.5);
@@ -142,10 +138,6 @@ span:last-of-type {
   transition: transform 0.2s, background-position 0s;
 }
 
-a:hover span:last-of-type {
-  transition: transform 0.2s, background-position calc(var(--hover) * 1.5s) calc(var(--hover) * 0.25s);
-}
-
 a {
   --hover: 0.4;
   --pos: 0;
@@ -157,17 +149,12 @@ a.trigger {
 }
 
 a.trigger svg {
-	-webkit-animation: sparkle 5s calc((var(--delay-step) * var(--d)) * 3s) both;
-	        animation: sparkle 5s calc((var(--delay-step) * var(--d)) * 3s) both;
+	-webkit-animation: sparkle 3s calc((var(--delay-step) * var(--d)) * 3s) both infinite;
+	        animation: sparkle 3s calc((var(--delay-step) * var(--d)) * 3s) both infinite;
 }
 
 a.trigger span:last-of-type {
-  transition: transform 5s, background-position calc(var(--hover) * 3s) calc(var(--hover) * 5s);
-}
-
-a:hover {
-  --hover: 1;
-  --pos: 1;
+  transition: transform 3s, background-position calc(var(--hover) * 3s) calc(var(--hover) * 5s) infinite;
 }
 
 a:active {
@@ -190,12 +177,6 @@ a svg path {
 	fill: var(--glare);
 }
 
-/* Animation for sparkles */
-
-a:hover svg {
-	-webkit-animation: sparkle 0.75s calc((var(--delay-step) * var(--d)) * 1s) both;
-	        animation: sparkle 0.75s calc((var(--delay-step) * var(--d)) * 1s) both;
-}
 
 @-webkit-keyframes sparkle {
 	50% {

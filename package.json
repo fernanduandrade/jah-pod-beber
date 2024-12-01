@@ -15,7 +15,6 @@
     "react-audio-player": "^0.17.0",
     "react-confetti": "^6.1.0",
     "react-dom": "latest",
-    "react-use": "^17.5.1",
     "tailwind-merge": "^1.14.0"
   },
   "devDependencies": {

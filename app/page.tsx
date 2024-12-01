@@ -10,8 +10,8 @@ import { useState, useEffect, useRef } from 'react'
 
 export default function Home() {
 
-  const animatedTextRef = useRef<HTMLAnchorElement>(null)
-  const { width, height } = useWindowSize()
+  const animatedAnchorText = useRef<HTMLAnchorElement>(null)
+  const { width, height } = window.screen
   const [zequinhaClicked, setZequinhaClicked] = useState(false)
   const [randomImagesData, setRandomImagesData] = useState([])
   const imagesPath = ['/cute_beer.svg', '/beer_shape.svg', '/cute_beer.png', '/beer_can.png']
@@ -20,23 +20,20 @@ export default function Home() {
       const images: any = Array.from({ length: 20 }, (_, id) => ({
         id,
         image: imagesPath[Math.floor(Math.random() * imagesPath.length)],
-        top: `${Math.random() * 100}vh`, // Random position using vh
-        left: `${Math.random() * 100}vw`, // Random position using vw
-        rotation: Math.random() * 360, // Random rotation in degrees
-        size: Math.random() * 3 + 1, // Random size multiplier (1x to 4x)
+        top: `${Math.random() * 100}vh`, 
+        left: `${Math.random() * 100}vw`, 
+        rotation: Math.random() * 360, 
+        size: Math.random() * 3 + 1,
       }))
       setRandomImagesData(images)
     }
-    if(animatedTextRef.current) {
-      const element = animatedTextRef.current
+    if(animatedAnchorText.current) {
+      const element = animatedAnchorText.current
       
-      // Add the class to trigger the animation
       element.classList.add('trigger')
       
-      // Remove the class after the animation duration to reset the state
       setTimeout(() => {
-        element.classList.remove('trigger')
-      }, 1000) // Match with your animation duration (1 second here)
+      }, 1000)
     }
   }, [width, height, zequinhaClicked])
 
@@ -114,7 +111,7 @@ export default function Home() {
 
           {zequinhaClicked && (
           <div className='flex items-center' style={{zIndex: 99}}>
-            <a href="#" ref={animatedTextRef} className="fade-in-right">
+            <a href="#" ref={animatedAnchorText} className="fade-in-right">
               <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
