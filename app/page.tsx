@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { Section } from './components/Section'
 import { SparklinText } from './components/SparklingText'
 import { BackgroundStickers } from './components/BackgroundStickers'
+import { GlowingArrow } from './components/GlowingArrow'
 import Zequinha from '../public/zequinha.webp'
 import { twMerge } from 'tailwind-merge'
 import Confetti from 'react-confetti'
@@ -47,17 +48,19 @@ export default function Home() {
         )}
       >
         <div className="flex flex-col items-center text-center">
-          <h1 style={{fontFamily: 'Poppins'}} className='text-[110px] font-semibold text-white z-[120]'>
+          <h1 style={{fontFamily: 'Poppins', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.75)'}} className='text-[60px] sm:text-[60px] md:text-[60px] lg:text-[110px] font-bold text-white z-[120]'>
             JÁ PODE BEBER?
           </h1>
+          
           {zequinhaClicked && <Confetti width={userWindow?.width} height={userWindow?.height} />}
-          <div className="image-container transform transition-transform duration-300"
+          
+          <div className="image-container transform transition-transform duration-300 z-10 flex gap-7"
             style={{
               width: zequinhaClicked ? "450px" : "",
               height: zequinhaClicked ? "450px" : "",
-              zIndex: 10,
               transition: "width 1s, height 1s",
             }}>
+            {!zequinhaClicked &&< GlowingArrow />}
             <Image
               className={`rounded zequinha ${
                 zequinhaClicked ? "rotate" : ""
@@ -69,6 +72,7 @@ export default function Home() {
               height="450"
               priority={true}
             />
+            {!zequinhaClicked && <GlowingArrow invert={true} />}
           </div>
 
           {zequinhaClicked && < SparklinText text='SIIIM!!' />}

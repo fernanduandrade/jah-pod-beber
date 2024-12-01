@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css');
 
 @tailwind base;
 @tailwind components;
@@ -246,5 +247,50 @@ a svg:nth-of-type(5) {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+i::before {
+  margin-right: -10px;
+  font-size: 200px;
+  color: transparent;
+  -webkit-text-stroke: 0.8px #ffffff;
+  animation: glowing 1.2s reverse infinite ease-in-out;
+}
+
+i:nth-child(1)::before {
+  animation-delay: 0;
+}
+i:nth-child(2)::before {
+  animation-delay: 0.14s;
+}
+i:nth-child(3)::before {
+  animation-delay: 0.21s;
+}
+i:nth-child(4)::before {
+  animation-delay: 0.28s;
+}
+i:nth-child(5)::before {
+  animation-delay: 0.35s;
+}
+i:nth-child(6)::before {
+  animation-delay: 0.42s;
+}
+i:nth-child(7)::before {
+  animation-delay: 0.49s;
+}
+i:nth-child(8)::before {
+  animation-delay: 0.56s;
+}
+
+@keyframes glowing {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 0 #ffffff) drop-shadow(0 0 1px #ffffff)
+      drop-shadow(0 0 2px #b91c1c) drop-shadow(0 0 3px #b91c1c)
+      drop-shadow(0 0 4px #b91c1c) drop-shadow(0 0 5px #b91c1c);
   }
 }
