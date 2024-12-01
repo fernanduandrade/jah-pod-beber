@@ -2,39 +2,32 @@
 
 import Image from 'next/image'
 import { Section } from './components/Section'
+import { SparklinText } from './components/SparklingText'
+import { BackgroundStickers } from './components/BackgroundStickers'
 import Zequinha from '../public/zequinha.webp'
 import { twMerge } from 'tailwind-merge'
 import Confetti from 'react-confetti'
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
+import { isMobile } from './common/logic/index'
 
 export default function Home() {
 
-  const animatedAnchorText = useRef<HTMLAnchorElement>(null)
-  const { width, height } = window.screen
+  
   const [zequinhaClicked, setZequinhaClicked] = useState(false)
-  const [randomImagesData, setRandomImagesData] = useState([])
-  const imagesPath = ['/cute_beer.svg', '/beer_shape.svg', '/cute_beer.png', '/beer_can.png']
+  const [userWindow, setUserWindow] = useState<{width: number, height: number}>()
+  
+  const [stickers, setStickers] =  useState(0)
+
   useEffect(() => {
-    if (width && height) {
-      const images: any = Array.from({ length: 20 }, (_, id) => ({
-        id,
-        image: imagesPath[Math.floor(Math.random() * imagesPath.length)],
-        top: `${Math.random() * 100}vh`, 
-        left: `${Math.random() * 100}vw`, 
-        rotation: Math.random() * 360, 
-        size: Math.random() * 3 + 1,
-      }))
-      setRandomImagesData(images)
-    }
-    if(animatedAnchorText.current) {
-      const element = animatedAnchorText.current
-      
-      element.classList.add('trigger')
-      
-      setTimeout(() => {
-      }, 1000)
-    }
-  }, [width, height, zequinhaClicked])
+    const { width, height } =  window.screen
+    setUserWindow({
+      height,
+      width
+    })
+
+    const stickers = isMobile() ? 10 : 25
+    setStickers(stickers)
+  }, [])
 
   const handlePlay = () => {
     const audio = new Audio('som_latinha.mp3')
@@ -44,41 +37,8 @@ export default function Home() {
 
   return (
     <main className="bg-yellow-400">
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          zIndex: 0,
-          overflow: "hidden",
-        }}
-      >
-        {randomImagesData.map((item: any) => (
-          <div
-            key={item.id}
-            style={{
-              position: "absolute",
-              top: item.top,
-              left: item.left,
-              textAlign: "center",
-              transform: `rotate(${item.rotation}deg)`,
-            }}
-          >
-            <Image
-              src={item.image}
-              alt={`Imagem ${item.id}`}
-              width={80 * item.size}
-              height={60 * item.size}
-              className="animate-float-delayed"
-              style={{
-                maxWidth: "10vw",
-                height: "auto",
-              }}
-            />
-          </div>
-        ))}
+      <div className='h-full w-full z-0 top-0 left-0 absolute overflow-hidden'>
+        <BackgroundStickers count={stickers} />
       </div>
 
       <Section
@@ -87,14 +47,17 @@ export default function Home() {
         )}
       >
         <div className="flex flex-col items-center text-center">
-          <h1 style={{fontFamily: 'Poppins', zIndex: 120}} className='text-[110px] font-semibold text-white'>JÁ PODE BEBER?</h1>
-          {zequinhaClicked && <Confetti width={width} height={height} />}
-          <div style={{
+          <h1 style={{fontFamily: 'Poppins'}} className='text-[110px] font-semibold text-white z-[120]'>
+            JÁ PODE BEBER?
+          </h1>
+          {zequinhaClicked && <Confetti width={userWindow?.width} height={userWindow?.height} />}
+          <div className="image-container transform transition-transform duration-300"
+            style={{
               width: zequinhaClicked ? "450px" : "",
               height: zequinhaClicked ? "450px" : "",
               zIndex: 10,
               transition: "width 1s, height 1s",
-            }} className="image-container transform transition-transform duration-300">
+            }}>
             <Image
               className={`rounded zequinha ${
                 zequinhaClicked ? "rotate" : ""
@@ -108,44 +71,7 @@ export default function Home() {
             />
           </div>
 
-          {zequinhaClicked && (
-          <div className='flex items-center' style={{zIndex: 99}}>
-            <a href="#" ref={animatedAnchorText} className="fade-in-right">
-              <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
-                  fill="#000"
-                />
-              </svg>
-              <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
-                  fill="#000"
-                />
-              </svg>
-              <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
-                  fill="#000"
-                />
-              </svg>
-              <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
-                  fill="#000"
-                />
-              </svg>
-              <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M93.781 51.578C95 50.969 96 49.359 96 48c0-1.375-1-2.969-2.219-3.578 0 0-22.868-1.514-31.781-10.422-8.915-8.91-10.438-31.781-10.438-31.781C50.969 1 49.375 0 48 0s-2.969 1-3.594 2.219c0 0-1.5 22.87-10.406 31.781-8.908 8.913-31.781 10.422-31.781 10.422C1 45.031 0 46.625 0 48c0 1.359 1 2.969 2.219 3.578 0 0 22.873 1.51 31.781 10.422 8.906 8.911 10.406 31.781 10.406 31.781C45.031 95 46.625 96 48 96s2.969-1 3.562-2.219c0 0 1.523-22.871 10.438-31.781 8.913-8.908 31.781-10.422 31.781-10.422Z"
-                  fill="#000"
-                />
-              </svg>
-              <span>SIIIM!!</span>
-              <span aria-hidden="true">SIIIM!!</span>
-            </a>
-          </div>
-          )}
+          {zequinhaClicked && < SparklinText text='SIIIM!!' />}
         </div>
       </Section>
     </main>

@@ -1,4 +1,4 @@
-import ReactAudioPlayer from "react-audio-player";
+import ReactAudioPlayer from 'react-audio-player'
 
 export const AudioPlayer = () => {
     return (
@@ -7,5 +7,5 @@ export const AudioPlayer = () => {
             autoPlay
             controls
         />
-    );
-};
+    )
+}

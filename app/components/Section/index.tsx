@@ -1,9 +1,9 @@
-import React from "react";
-import { twMerge } from "tailwind-merge";
+import React from 'react'
+import { twMerge } from 'tailwind-merge'
 
 interface SectionProps {
-  className?: string;
-  children: React.ReactNode;
+  className?: string
+  children: React.ReactNode
 }
 
 export const Section = ({ className, children }: SectionProps) => {
@@ -13,5 +13,5 @@ export const Section = ({ className, children }: SectionProps) => {
     >
       {children}
     </section>
-  );
-};
+  )
+}
