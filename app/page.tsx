@@ -5,7 +5,6 @@ import { Section } from './components/Section'
 import Zequinha from '../public/zequinha.webp'
 import { twMerge } from 'tailwind-merge'
 import Confetti from 'react-confetti'
-import useWindowSize from 'react-use/lib/useWindowSize'
 import { useState, useEffect, useRef } from 'react'
 
 export default function Home() {
