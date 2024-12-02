@@ -10,11 +10,6 @@ export const GlowingArrow = (props: GlowingArrowProps) => {
             <i className="zmdi zmdi-chevron-right"></i>
             <i className="zmdi zmdi-chevron-right"></i>
             <i className="zmdi zmdi-chevron-right"></i>
-            <i className="zmdi zmdi-chevron-right"></i>
-            <i className="zmdi zmdi-chevron-right"></i>
-            <i className="zmdi zmdi-chevron-right"></i>
-            <i className="zmdi zmdi-chevron-right"></i>
-            <i className="zmdi zmdi-chevron-right"></i>
         </div>
     )
 }

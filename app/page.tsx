@@ -48,13 +48,13 @@ export default function Home() {
         )}
       >
         <div className="flex flex-col items-center text-center">
-          <h1 style={{fontFamily: 'Poppins', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.75)'}} className='text-[60px] sm:text-[60px] md:text-[60px] lg:text-[110px] font-bold text-white z-[120]'>
+          <h1 style={{fontFamily: 'Poppins', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.75)'}} className='text-[40px] sm:text-[60px] md:text-[60px] lg:text-[110px] font-bold text-white z-[120]'>
             JÁ PODE BEBER?
           </h1>
           
           {zequinhaClicked && <Confetti width={userWindow?.width} height={userWindow?.height} />}
           
-          <div className="image-container transform transition-transform duration-300 z-10 flex gap-7"
+          <div className="image-container transform transition-transform duration-300 z-10 flex md:gap-4 gap-7"
             style={{
               width: zequinhaClicked ? "450px" : "",
               height: zequinhaClicked ? "450px" : "",
