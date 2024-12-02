@@ -39,8 +39,8 @@ export const SparklinText = (props: SparklinTextProps) => {
             fill="#000"
           />
         </svg>
-        <span>{props.text}</span>
-        <span aria-hidden="true">{props.text}</span>
+        <span className="sm:text-[210px] md:text-[150px] text-[110px]">{props.text}</span>
+        <span className="sm:text-[210px] md:text-[150px] text-[110px]" aria-hidden="true">{props.text}</span>
       </a>
     </div>
 

@@ -11,7 +11,7 @@
   --background-end-rgb: 255, 255, 255;
   --color: #FFFFFF;
   --shadow: #f08c00;
-  --glare: hsl(0 0% 100% / 0.75);
+  --glare: hsl(0 0% 100% / 0.7E5);
   --font-size: clamp(6rem, 9vw, 6.5rem);
   --transition: 0.2s;
 }
@@ -75,7 +75,6 @@ body {
 .zequinha {
   transition: transform 1.5s ease-in-out;
   border-radius: 50%;
-  max-width: 80vw;
   height: auto;
 }
 
@@ -251,11 +250,11 @@ a svg:nth-of-type(5) {
 }
 
 i::before {
-  margin-right: -10px;
-  font-size: 200px;
+  margin-right: -2px;
   color: transparent;
   -webkit-text-stroke: 0.8px #ffffff;
   animation: glowing 1.2s reverse infinite ease-in-out;
+  @apply: sm:-text[40px] md:text-[80px] text-[200px]
 }
 
 i:nth-child(1)::before {
