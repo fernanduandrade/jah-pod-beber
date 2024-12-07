@@ -250,36 +250,19 @@ a svg:nth-of-type(5) {
 }
 
 i::before {
-  margin-right: -2px;
   color: transparent;
   -webkit-text-stroke: 0.8px #ffffff;
   animation: glowing 1.2s reverse infinite ease-in-out;
-  @apply: sm:-text[40px] md:text-[80px] text-[200px]
 }
 
 i:nth-child(1)::before {
   animation-delay: 0;
 }
 i:nth-child(2)::before {
-  animation-delay: 0.14s;
-}
-i:nth-child(3)::before {
   animation-delay: 0.21s;
 }
-i:nth-child(4)::before {
-  animation-delay: 0.28s;
-}
-i:nth-child(5)::before {
-  animation-delay: 0.35s;
-}
-i:nth-child(6)::before {
-  animation-delay: 0.42s;
-}
-i:nth-child(7)::before {
-  animation-delay: 0.49s;
-}
-i:nth-child(8)::before {
-  animation-delay: 0.56s;
+i:nth-child(3)::before {
+  animation-delay: 0.41s;
 }
 
 @keyframes glowing {

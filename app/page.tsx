@@ -48,28 +48,24 @@ export default function Home() {
         )}
       >
         <div className="flex flex-col items-center text-center">
-          <h1 style={{fontFamily: 'Poppins', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.75)'}} className='text-[40px] sm:text-[60px] md:text-[60px] lg:text-[110px] font-bold text-white z-[120]'>
+          <h1 style={{fontFamily: 'Poppins', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.75)'}} className='text-[50px] sm:text-[60px] md:text-[60px] lg:text-[110px] font-bold text-white z-[120]'>
             JÁ PODE BEBER?
           </h1>
           
           {zequinhaClicked && <Confetti width={userWindow?.width} height={userWindow?.height} />}
           
-          <div className="image-container transform transition-transform duration-300 z-10 flex md:gap-4 gap-7"
+          <div className="image-container transform transition-transform duration-300 z-10 flex md:gap-4"
             style={{
-              width: zequinhaClicked ? "450px" : "",
-              height: zequinhaClicked ? "450px" : "",
               transition: "width 1s, height 1s",
             }}>
             {!zequinhaClicked &&< GlowingArrow />}
             <Image
-              className={`rounded zequinha ${
+              className={`rounded zequinha sm:w-[220px] md:w-[320px] lg:w-[450px] sm:h-[220px] md:h-[320px] lg:h-[450px]  ${
                 zequinhaClicked ? "rotate" : ""
               } cursor-pointer`}
               onClick={handlePlay}
               src={Zequinha}
               alt="Zeca pagodinho"
-              width="450"
-              height="450"
               priority={true}
             />
             {!zequinhaClicked && <GlowingArrow invert={true} />}
