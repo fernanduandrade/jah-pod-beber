@@ -87,7 +87,7 @@ export function ShareButtons() {
           LinkedIn
         </button>
 
-        {typeof navigator !== "undefined" && navigator.share && (
+        {typeof navigator !== "undefined" && "share" in navigator && (
           <button
             onClick={shareNative}
             className="inline-flex hover:cursor-pointer items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 border border-primary text-primary bg-transparent hover:bg-primary/10"
