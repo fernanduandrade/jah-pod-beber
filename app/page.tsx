@@ -1,4 +1,4 @@
-import BeerTime from '@/components/BeerTime'
+import BeerTime from './components/BeerTime'
 
 export default function Home() {
 
