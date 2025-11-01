@@ -1,36 +1,192 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Jah-Pod-beber
 
-## Getting Started
+Um projeto Next.js moderno com React 19, TypeScript e Tailwind CSS, incluindo uma coleção completa de componentes UI baseados em Radix UI.
 
-First, run the development server:
+## 🚀 Tecnologias
+
+### Core
+
+- **Next.js 16.0.0** - Framework React para produção
+- **React 19.2.0** - Biblioteca JavaScript para interfaces
+- **TypeScript 5** - Superset tipado do JavaScript
+- **Node.js 22** - Runtime JavaScript
+
+### Estilização
+
+- **Tailwind CSS 4.1.9** - Framework CSS utilitário moderno
+- **Tailwind Merge** - Merge inteligente de classes CSS
+- **Tailwind Animate** - Animações CSS utilitárias
+- **PostCSS** - Processador CSS
+- **Autoprefixer** - Prefixos CSS automáticos
+
+### Componentes UI
+
+- **Radix UI** - Componentes acessíveis e não estilizados (26 componentes)
+  - Accordion, Alert Dialog, Avatar, Checkbox, Dialog, Dropdown Menu
+  - Navigation Menu, Popover, Select, Slider, Switch, Tabs, Toast, Tooltip e mais
+- **Class Variance Authority** - Variantes de componentes
+- **Lucide React** - Ícones modernos e consistentes
+- **Command (cmdk)** - Componente de comando estilo VS Code
+- **Embla Carousel** - Carrossel moderno e performático
+- **React Resizable Panels** - Painéis redimensionáveis
+
+### Formulários e Validação
+
+- **React Hook Form** - Gerenciamento de formulários performático
+- **Zod** - Validação de schemas TypeScript-first
+- **@hookform/resolvers** - Resolvers para integração Zod + React Hook Form
+- **Input OTP** - Componente para entrada de código OTP
+
+### Utilitários
+
+- **date-fns** - Biblioteca moderna para manipulação de datas
+- **React Day Picker** - Seletor de datas acessível
+- **clsx** - Utilidade para construir strings de classes condicionalmente
+- **Next Themes** - Suporte a temas (dark/light mode)
+
+### Visualização e Analytics
+
+- **Recharts** - Biblioteca de gráficos React
+- **Vercel Analytics** - Analytics integrado
+- **Sonner** - Notificações toast elegantes
+
+## 📋 Pré-requisitos
+
+- **Node.js** 18+ (recomendado: 22+)
+- **pnpm** 10.15.0+ (gerenciador de pacotes)
+
+Para instalar o pnpm globalmente:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install -g pnpm
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Instalação
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone o repositório:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+git clone https://github.com/fernanduandrade/jah-pod-beber
+cd jah-pod-beber
+```
 
-## Learn More
+2. Instale as dependências:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎮 Como usar
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Desenvolvimento
 
-## Deploy on Vercel
+Execute o servidor de desenvolvimento:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+pnpm dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
+
+A página será atualizada automaticamente conforme você edita os arquivos.
+
+### Build de produção
+
+Para criar um build otimizado para produção:
+
+```bash
+pnpm build
+```
+
+### Iniciar servidor de produção
+
+Após o build, inicie o servidor de produção:
+
+```bash
+pnpm start
+```
+
+### Lint
+
+Execute o linter para verificar problemas no código:
+
+```bash
+pnpm lint
+```
+
+## 📁 Estrutura do projeto
+
+```
+jah-pod-beber/
+├── app/                    # Diretório principal da aplicação Next.js (App Router)
+│   ├── api/                # Rotas de API
+│   ├── components/         # Componentes React reutilizáveis
+│   ├── globals.css         # Estilos globais
+│   ├── layout.tsx          # Layout raiz da aplicação
+│   ├── page.tsx            # Página inicial
+│   └── favicon.ico         # Ícone do site
+├── public/                 # Arquivos estáticos (imagens, etc.)
+├── .npmrc                  # Configurações do pnpm
+├── next.config.js          # Configuração do Next.js
+├── package.json            # Dependências e scripts do projeto
+├── pnpm-lock.yaml          # Lockfile do pnpm
+├── postcss.config.mjs      # Configuração do PostCSS
+├── tailwind.config.ts      # Configuração do Tailwind CSS
+├── tsconfig.json           # Configuração do TypeScript
+├── LICENSE                 # Licença MIT
+└── README.md               # Este arquivo
+```
+
+## 🛠️ Scripts disponíveis
+
+| Script       | Descrição                                             |
+| ------------ | ----------------------------------------------------- |
+| `pnpm dev`   | Inicia o servidor de desenvolvimento na porta 3000    |
+| `pnpm build` | Cria um build otimizado para produção                 |
+| `pnpm start` | Inicia o servidor de produção (requer build anterior) |
+| `pnpm lint`  | Executa o ESLint para verificar problemas no código   |
+
+## 📦 Versão
+
+**Versão atual:** 0.1.2
+
+## 📝 Licença
+
+Este projeto está licenciado sob a [Licença MIT](LICENSE) - veja o arquivo LICENSE para detalhes.
+
+Copyright (c) 2023 Fernando Andrade
+
+## 🔗 Links úteis
+
+### Documentação oficial
+
+- [Next.js Documentation](https://nextjs.org/docs) - Aprenda sobre recursos do Next.js
+- [React Documentation](https://react.dev) - Documentação oficial do React
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+
+### Bibliotecas de componentes
+
+- [Radix UI Documentation](https://www.radix-ui.com) - Documentação dos componentes
+- [shadcn/ui](https://ui.shadcn.com) - Componentes baseados em Radix UI
+
+### Outros recursos
+
+- [Next.js GitHub](https://github.com/vercel/next.js) - Código fonte do Next.js
+- [React GitHub](https://github.com/facebook/react) - Código fonte do React
+- [Vercel](https://vercel.com) - Plataforma de deploy recomendada
+
+## 🤝 Contribuindo
+
+Este é um projeto privado. Para contribuições, entre em contato com o mantenedor.
+
+## 📄 Notas
+
+- Este projeto utiliza o App Router do Next.js (diretório `app/`)
+- Tailwind CSS 4 com configuração moderna
+- TypeScript configurado com strict mode habilitado
+- Componentes UI totalmente acessíveis seguindo padrões WAI-ARIA
+
+## TODO:
+
+- Documentar como fazer contribuição
