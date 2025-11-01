@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { Beer, Clock, Calendar } from "lucide-react"
-import { Footer } from "./Footer"
+import Footer from "./footer"
 import { VisitorCounter } from "./VisitorsCounter"
 export default function BeerTime() {
   const [currentTime, setCurrentTime] = useState("")
