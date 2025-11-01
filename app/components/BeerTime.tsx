@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react"
 import { Beer, Clock, Calendar } from "lucide-react"
 import { Footer } from "./Footer"
-
-export function BeerTime() {
+import { VisitorCounter } from "./VisitorsCounter"
+export default function BeerTime() {
   const [currentTime, setCurrentTime] = useState("")
   const [mounted, setMounted] = useState(false)
 
@@ -83,6 +83,8 @@ export function BeerTime() {
               </p>
               <p className="text-2xl font-bold text-foreground">24/7</p>
             </div>
+
+            <VisitorCounter />
           </div>
 
           {/* Footer message */}
