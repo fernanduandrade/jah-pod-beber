@@ -5,18 +5,49 @@ import { Analytics } from '@vercel/analytics/react'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Jah pode beber?',
-  description: 'Será que já chegou a hora de beber? Descubra',
-  keywords: 'tá liberado beber, beber cerveja, hora de beber, tomar uma, tomar cerveja, já pode beber?, bora tomar uma?, é hora de beber?, diversão, curiosidade sobre beber', 
-  authors: [{ name: 'He4rt Devs', url: 'https://heartdevs.com/' }, { name: 'Fernando Andrade', url: 'https://github.com/fernanduandrade' }],
+  title: "Já Pode Beber? | Descubra se é hora da cerveja",
+  description:
+    "Descubra se já pode tomar aquela cerveja gelada! A resposta é sempre SIM! Horário de funcionamento 24/7, todos os dias da semana. Beba com moderação.",
+  keywords: [
+    "já pode beber",
+    "cerveja",
+    "hora da cerveja",
+    "beber cerveja",
+    "happy hour",
+    "cerveja gelada",
+    "24/7",
+    "quando beber",
+  ],
+  authors: [{ name: "Fernando Andrade", url: "https://github.com/fernanduandrade" }],
+  creator: "Fernando Andrade",
+  publisher: "Fernando Andrade",
   openGraph: {
-    title: 'Jah pode beber?',
-    description: 'Será que já chegou a hora de beber? Descubra',
-    type: 'website',
+    type: "website",
+    locale: "pt_BR",
+    title: "Já Pode Beber? | 24/7",
+    description: "Descubra se já pode tomar aquela cerveja gelada! A resposta é sempre SIM!",
+    siteName: "Já Pode Beber",
     images: [
       { url: 'beer.png', width: 512, height: 512, alt: 'cerveja img' },
     ],
   },
+  instagram: {
+    card: "summary_large_image",
+    title: "Já Pode Beber?",
+    description: "Descubra se já pode tomar aquela cerveja gelada! A resposta é sempre SIM!",
+    creator: "@fernanduandrade",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  }
 }
 
 export default function RootLayout({
@@ -25,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html lang="pt-BR" className="!scroll-smooth">
       <body className={inter.className}>
         {children}
         <Analytics />

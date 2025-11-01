@@ -1,6 +1,6 @@
 {
   "name": "jah-pod-beber",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vercel/analytics": "^1.0.2",
+    "lucide-react": "^0.552.0",
     "next": "latest",
     "pnpm": "^10.15.0",
     "react": "latest",
