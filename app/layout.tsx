@@ -36,12 +36,6 @@ export const metadata: Metadata = {
       { url: 'beer.png', width: 512, height: 512, alt: 'cerveja img' },
     ],
   },
-  instagram: {
-    card: "summary_large_image",
-    title: "Já Pode Beber?",
-    description: "Descubra se já pode tomar aquela cerveja gelada! A resposta é sempre SIM!",
-    creator: "@fernanduandrade",
-  },
   robots: {
     index: true,
     follow: true,
