@@ -39,7 +39,7 @@ export function VisitorCounter() {
     <div className="bg-card border border-border rounded-xl p-6 space-y-3 hover:border-primary transition-colors">
       <Users className="w-8 h-8 text-primary mx-auto" />
       <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
-        Pessoas que já sabem a horár de beber 😎🍻
+        Pessoas que já sabem a hora de beber 😎🍻
         </p>
       <p className="text-2xl font-bold text-foreground">{count?.toLocaleString("pt-BR") || 0}</p>
     </div>
