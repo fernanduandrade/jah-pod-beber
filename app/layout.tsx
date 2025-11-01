@@ -1,8 +1,13 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Nunito } from "next/font/google"
 import { Analytics } from '@vercel/analytics/react'
-const inter = Inter({ subsets: ['latin'] })
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700", "800"],
+  variable: "--font-nunito",
+})
 
 export const metadata: Metadata = {
   title: "Já Pode Beber? | Descubra se é hora da cerveja",
@@ -57,7 +62,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR">
-      <body className={`font-sans antialiased`}>
+      <body className={`font-sans antialiased ${nunito.variable}`}>
         {children}
         <Analytics />
       </body>
