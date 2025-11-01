@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Beer, Clock, Calendar } from "lucide-react"
 import Footer from "./footer"
 import { VisitorCounter } from "./VisitorsCounter"
+import { ShareButtons } from "./ShareButtons"
 export default function BeerTime() {
   const [currentTime, setCurrentTime] = useState("")
   const [mounted, setMounted] = useState(false)
@@ -87,7 +88,12 @@ export default function BeerTime() {
             <VisitorCounter />
           </div>
 
-          {/* Footer message */}
+          <div className="pt-8">
+            <div className="bg-card border border-border rounded-xl p-6 hover:border-beer-gold hover:shadow-lg hover:shadow-beer-yellow/10 transition-all">
+              <ShareButtons />
+            </div>
+          </div>
+          
           <div className="pt-8">
             <p className="text-lg text-muted-foreground text-pretty">
               {"Beba com moderação. Aprecie cada momento. 🍻"}
