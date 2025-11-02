@@ -1,15 +1,16 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Nunito } from "next/font/google"
-import { Analytics } from '@vercel/analytics/react'
+import "./globals.css";
+import type { Metadata } from "next";
+import { Nunito } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 const nunito = Nunito({
   subsets: ["latin"],
   weight: ["300", "400", "600", "700", "800"],
   variable: "--font-nunito",
-})
+});
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://jahpodebeber.com"),
   title: "Já Pode Beber? | Descubra se é hora da cerveja",
   description:
     "Descubra se já pode tomar aquela cerveja gelada! A resposta é sempre SIM! Horário de funcionamento 24/7, todos os dias da semana. Beba com moderação.",
@@ -23,18 +24,19 @@ export const metadata: Metadata = {
     "24/7",
     "quando beber",
   ],
-  authors: [{ name: "Fernando Andrade", url: "https://github.com/fernanduandrade" }],
+  authors: [
+    { name: "Fernando Andrade", url: "https://github.com/fernanduandrade" },
+  ],
   creator: "Fernando Andrade",
   publisher: "Fernando Andrade",
   openGraph: {
     type: "website",
     locale: "pt_BR",
     title: "Já Pode Beber? | 24/7",
-    description: "Descubra se já pode tomar aquela cerveja gelada! A resposta é sempre SIM!",
+    description:
+      "Descubra se já pode tomar aquela cerveja gelada! A resposta é sempre SIM!",
     siteName: "Já Pode Beber",
-    images: [
-      { url: 'beer.png', width: 512, height: 512, alt: 'cerveja img' },
-    ],
+    images: [{ url: "beer.png", width: 512, height: 512, alt: "cerveja img" }],
   },
   robots: {
     index: true,
@@ -46,13 +48,13 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  }
-}
+  },
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="pt-BR">
@@ -61,5 +63,5 @@ export default function RootLayout({
         <Analytics />
       </body>
     </html>
-  )
+  );
 }
