@@ -1,37 +1,45 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Share2 } from "lucide-react"
+import { useState, useEffect } from "react";
+import { Share2 } from "lucide-react";
 export function ShareButtons() {
-  const [mounted, setMounted] = useState(false)
-  const [hasNativeShare, setHasNativeShare] = useState(false)
-  const shareUrl = typeof window !== "undefined" ? window.location.href : ""
-  const shareText = "Já pode beber? SIM! Sempre é hora de tomar uma gelada! 🍺"
+  const [mounted, setMounted] = useState(false);
+  const [hasNativeShare, setHasNativeShare] = useState(false);
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+  const shareText = "Já pode beber? SIM! Sempre é hora de tomar uma gelada! 🍺";
 
   useEffect(() => {
-    setMounted(true)
-    setHasNativeShare(typeof navigator !== "undefined" && "share" in navigator)
-  }, [])
+    setMounted(true);
+    setHasNativeShare(typeof navigator !== "undefined" && "share" in navigator);
+  }, []);
 
   const shareOnWhatsApp = () => {
-    const url = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`
-    window.open(url, "_blank")
-  }
+    const url = `https://wa.me/?text=${encodeURIComponent(
+      `${shareText} ${shareUrl}`
+    )}`;
+    window.open(url, "_blank");
+  };
 
   const shareOnFacebook = () => {
-    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`
-    window.open(url, "_blank", "width=600,height=400")
-  }
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+      shareUrl
+    )}`;
+    window.open(url, "_blank", "width=600,height=400");
+  };
 
   const shareOnTwitter = () => {
-    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`
-    window.open(url, "_blank", "width=600,height=400")
-  }
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+      shareText
+    )}&url=${encodeURIComponent(shareUrl)}`;
+    window.open(url, "_blank", "width=600,height=400");
+  };
 
   const shareOnLinkedIn = () => {
-    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`
-    window.open(url, "_blank", "width=600,height=400")
-  }
+    const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+      shareUrl
+    )}`;
+    window.open(url, "_blank", "width=600,height=400");
+  };
 
   const shareNative = async () => {
     if (navigator.share) {
@@ -40,18 +48,20 @@ export function ShareButtons() {
           title: "Já pode beber?",
           text: shareText,
           url: shareUrl,
-        })
+        });
       } catch (err) {
-        console.log("Error sharing:", err)
+        console.log("Error sharing:", err);
       }
     }
-  }
+  };
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-center gap-2">
         <Share2 className="w-5 h-5 text-muted-foreground" />
-        <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">Compartilhar</p>
+        <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+          Compartilhar
+        </p>
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-3">
@@ -106,5 +116,5 @@ export function ShareButtons() {
         )}
       </div>
     </div>
-  )
+  );
 }
