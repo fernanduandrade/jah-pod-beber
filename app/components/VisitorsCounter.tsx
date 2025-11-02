@@ -3,7 +3,11 @@
 import { useEffect, useState, useRef } from "react"
 import { Users, TrendingUp } from "lucide-react"
 
-export function VisitorCounter() {
+interface VisitorCounterProps {
+  onIncrement?: () => void
+}
+
+export function VisitorCounter({ onIncrement }: VisitorCounterProps) {
   const [count, setCount] = useState<number | null>(null)
   const [displayCount, setDisplayCount] = useState<number>(0)
   const [isLoading, setIsLoading] = useState(true)
@@ -20,6 +24,10 @@ export function VisitorCounter() {
 
     if (end > start) {
       setIsIncrementing(true)
+      // Disparar confetti quando incrementa
+      if (onIncrement && previousCountRef.current > 0) {
+        onIncrement()
+      }
     }
 
     const animate = () => {
@@ -46,8 +54,14 @@ export function VisitorCounter() {
   useEffect(() => {
     const incrementAndFetch = async () => {
       try {
+        // Get timezone
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+        
         const response = await fetch("/api/visitors", {
           method: "POST",
+          headers: {
+            "x-timezone": timezone,
+          },
         })
         const data = await response.json()
         setCount(data.count)
