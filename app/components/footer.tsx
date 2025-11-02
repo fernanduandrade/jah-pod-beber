@@ -1,4 +1,5 @@
 import { Github, Linkedin, Heart } from "lucide-react"
+import { ThemeToggle } from "./ThemeToggle"
 
 export default function Footer() {
   return (
@@ -11,6 +12,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-6">
+            <ThemeToggle />
             <a
               href="https://github.com/fernanduandrade"
               target="_blank"
@@ -39,6 +41,23 @@ export default function Footer() {
             >
               <Heart className="w-5 h-5 fill-current" />
               <span className="text-sm font-medium">He4rt Developers</span>
+            </a>
+          </div>
+
+          {/* Navigation Links */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+            <a
+              href="/stats"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              Estatísticas
+            </a>
+            <span className="text-muted-foreground">•</span>
+            <a
+              href="/about"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              Sobre
             </a>
           </div>
 

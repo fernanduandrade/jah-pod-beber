@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -57,10 +58,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Já Pode Beber?",
+              description:
+                "Descubra se já pode tomar aquela cerveja gelada! A resposta é sempre SIM!",
+              url: "https://jahpodebeber.com",
+              publisher: {
+                "@type": "Person",
+                name: "Fernando Andrade",
+              },
+            }),
+          }}
+        />
+      </head>
       <body className={`font-sans antialiased ${nunito.variable}`}>
-        {children}
-        <Analytics />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange={false}
+        >
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );
