@@ -180,6 +180,34 @@ Copyright (c) 2023 Fernando Andrade
 
 Este é um projeto privado. Para contribuições, entre em contato com o mantenedor.
 
+## Contribuidores
+
+<table>
+<tr>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/Novout>
+            <img src=https://avatars.githubusercontent.com/u/58053397?v=4 width="100;"  alt=Fernando Andrade/>
+            <br />
+            <sub style="font-size:14px"><b>Fernando Andrade/b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/kjkGustavo>
+            <img src=https://avatars.githubusercontent.com/u/40013000?v=4 width="100;"  alt=Gustavo/>
+            <br />
+            <sub style="font-size:14px"><b>Gustavo</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/Nandosts>
+            <img src=https://avatars.githubusercontent.com/u/65089035?v=4 width="100;"  alt=Fernando Melo/>
+            <br />
+            <sub style="font-size:14px"><b>Fernando Melo</b></sub>
+        </a>
+    </td>
+</tr>
+</table>
+
 ## 📄 Notas
 
 - Este projeto utiliza o App Router do Next.js (diretório `app/`)
