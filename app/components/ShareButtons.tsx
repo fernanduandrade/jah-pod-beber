@@ -1,9 +1,17 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { Share2 } from "lucide-react"
 export function ShareButtons() {
+  const [mounted, setMounted] = useState(false)
+  const [hasNativeShare, setHasNativeShare] = useState(false)
   const shareUrl = typeof window !== "undefined" ? window.location.href : ""
   const shareText = "Já pode beber? SIM! Sempre é hora de tomar uma gelada! 🍺"
+
+  useEffect(() => {
+    setMounted(true)
+    setHasNativeShare(typeof navigator !== "undefined" && "share" in navigator)
+  }, [])
 
   const shareOnWhatsApp = () => {
     const url = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`
@@ -87,7 +95,7 @@ export function ShareButtons() {
           LinkedIn
         </button>
 
-        {typeof navigator !== "undefined" && "share" in navigator && (
+        {mounted && hasNativeShare && (
           <button
             onClick={shareNative}
             className="inline-flex hover:cursor-pointer items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 h-9 px-4 py-2 border border-primary text-primary bg-transparent hover:bg-primary/10"
