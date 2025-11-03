@@ -5,13 +5,23 @@ import { Beer, Clock, Calendar } from "lucide-react"
 import Footer from "./footer"
 import { VisitorCounter } from "./VisitorsCounter"
 import { ShareButtons } from "./ShareButtons"
+import { AudioPlayer } from "./AudioPlayer"
+import { ConfettiEffect } from "./ConfettiEffect"
+import { CheckInButton } from "./CheckInButton"
+import { MessageWall } from "./MessageWall"
+import { Reactions } from "./Reactions"
+import { BeerQuotes } from "./BeerQuotes"
 
 export default function BeerTime() {
   const [currentTime, setCurrentTime] = useState("")
   const [mounted, setMounted] = useState(false)
+  const [confettiTrigger, setConfettiTrigger] = useState(0)
 
   useEffect(() => {
     setMounted(true)
+    // Disparar confetti na inicialização
+    setConfettiTrigger((prev) => prev + 1)
+    
     const updateTime = () => {
       const now = new Date()
       setCurrentTime(
@@ -29,6 +39,7 @@ export default function BeerTime() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ConfettiEffect trigger={confettiTrigger} />
       <main className="flex-1 flex flex-col items-center justify-center p-4 relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 -z-10">
@@ -64,7 +75,7 @@ export default function BeerTime() {
                     Pessoas que já estão bebendo
                   </p>
                   <div className="flex items-center justify-center">
-                    <VisitorCounter />
+                    <VisitorCounter onIncrement={() => setConfettiTrigger((prev) => prev + 1)} />
                   </div>
                 </div>
               </div>
@@ -73,6 +84,11 @@ export default function BeerTime() {
             <p className="text-2xl md:text-4xl font-semibold text-muted-foreground text-balance">
               Sempre é hora de tomar uma gelada
             </p>
+
+            {/* Check-in Button */}
+            <div className="pt-4">
+              <CheckInButton />
+            </div>
           </div>
 
           {/* Info cards */}
@@ -98,9 +114,21 @@ export default function BeerTime() {
             </div>
           </div>
 
-          <div className="pt-8">
+          <div className="pt-8 space-y-6">
             <div className="bg-card/80 backdrop-blur-sm border-2 border-beer-gold/30 rounded-xl p-6 hover:border-beer-gold hover:shadow-lg hover:shadow-beer-yellow/20 transition-all">
               <ShareButtons />
+            </div>
+            
+            <div className="bg-card/80 backdrop-blur-sm border-2 border-beer-gold/30 rounded-xl p-6 hover:border-beer-gold hover:shadow-lg hover:shadow-beer-yellow/20 transition-all">
+              <MessageWall />
+            </div>
+            
+            <div className="bg-card/80 backdrop-blur-sm border-2 border-beer-gold/30 rounded-xl p-6 hover:border-beer-gold hover:shadow-lg hover:shadow-beer-yellow/20 transition-all">
+              <Reactions />
+            </div>
+            
+            <div className="bg-card/80 backdrop-blur-sm border-2 border-beer-gold/30 rounded-xl p-6 hover:border-beer-gold hover:shadow-lg hover:shadow-beer-yellow/20 transition-all">
+              <BeerQuotes />
             </div>
           </div>
 
@@ -110,6 +138,7 @@ export default function BeerTime() {
           </div>
         </div>
       </main>
+      <AudioPlayer />
       <Footer />
     </div>
   )
