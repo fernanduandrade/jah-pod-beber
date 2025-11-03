@@ -1,3 +1,10 @@
+-- visitors table
+CREATE TABLE public.visitors (
+    id SERIAL PRIMARY KEY,
+    count INTEGER DEFAULT 0,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Migration: Expand visitor tracking and add new tables
 -- Execute this migration before deploying the new features
 
