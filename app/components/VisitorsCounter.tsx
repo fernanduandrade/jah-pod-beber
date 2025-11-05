@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react"
 import { Users, TrendingUp } from "lucide-react"
-
+import { getVisitors, updateVisitors } from "../actions/visitors"
 interface VisitorCounterProps {
   onIncrement?: () => void
 }
@@ -15,7 +15,8 @@ export function VisitorCounter({ onIncrement }: VisitorCounterProps) {
   const previousCountRef = useRef<number>(0)
 
   useEffect(() => {
-    if (count === null) return
+    if (count === null)
+      return
 
     const start = displayCount
     const end = count
@@ -52,35 +53,18 @@ export function VisitorCounter({ onIncrement }: VisitorCounterProps) {
   }, [count])
 
   useEffect(() => {
-    const incrementAndFetch = async () => {
-      try {
-        // Get timezone
-        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-        
-        const response = await fetch("/api/visitors", {
-          method: "POST",
-          headers: {
-            "x-timezone": timezone,
-          },
-        })
-        const data = await response.json()
-        setCount(data.count)
-      } catch (error) {
-        console.error("Failed to update visitor count:", error)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    incrementAndFetch()
+    updateVisitors()
 
     const pollInterval = setInterval(async () => {
       try {
-        const response = await fetch("/api/visitors")
-        const data = await response.json()
-        setCount(data.count)
+        const visitorsCounter = await getVisitors()
+        console.log(visitorsCounter)
+        setCount(visitorsCounter)
       } catch (error) {
         console.error("Failed to fetch visitor count:", error)
+      }
+      finally {
+        setIsLoading(false)
       }
     }, 3000)
 
