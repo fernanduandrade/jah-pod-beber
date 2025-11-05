@@ -15,6 +15,7 @@ import {
 } from "recharts"
 import { TrendingUp, Users, Calendar, Clock } from "lucide-react"
 import type { StatsResponse } from "../types/api"
+import { getStatus } from "../actions/stats"
 
 const DAY_NAMES = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"]
 
@@ -25,8 +26,7 @@ export function StatsDashboard() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await fetch("/api/stats")
-        const data = await response.json()
+        const data = await getStatus()
         setStats(data)
       } catch (error) {
         console.error("Failed to fetch stats:", error)
