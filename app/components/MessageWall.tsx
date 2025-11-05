@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Send, MessageSquare } from "lucide-react"
 import type { Message, MessageRequest, MessageResponse } from "../types/api"
 import { messageSchema } from "../lib/validations"
+import { createMessage, getMessages } from "../actions/messages"
 
 export function MessageWall() {
   const [messages, setMessages] = useState<Message[]>([])
@@ -18,8 +19,7 @@ export function MessageWall() {
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch("/api/messages")
-      const data = await response.json()
+      const data = await getMessages()
       if (data.success && data.messages) {
         setMessages(data.messages)
       }
@@ -47,15 +47,7 @@ export function MessageWall() {
         author: validation.data.author,
       }
 
-      const response = await fetch("/api/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      })
-
-      const data: MessageResponse = await response.json()
+      const data: MessageResponse = await createMessage(payload)
 
       if (data.success && data.message) {
         setMessages((prev) => [data.message!, ...prev].slice(0, 10))
