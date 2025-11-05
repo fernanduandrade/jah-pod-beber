@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import type { Reaction, ReactionRequest, ReactionResponse } from "../types/api";
 import { reactionSchema } from "../lib/validations";
+import { addReaction, getReactions } from "../actions/reactions";
 
 const REACTION_EMOJIS = [
   { emoji: "🍺", label: "Cerveja" },
@@ -22,8 +23,7 @@ export function Reactions() {
 
   const fetchReactions = async () => {
     try {
-      const response = await fetch("/api/reactions");
-      const data = await response.json();
+      const data = await getReactions();
       if (data.success && data.reactions) {
         setReactions(data.reactions);
       }
@@ -43,15 +43,7 @@ export function Reactions() {
         emoji: validation.data.emoji,
       };
 
-      const response = await fetch("/api/reactions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const data: ReactionResponse = await response.json();
+      const data: ReactionResponse = await addReaction(payload);
 
       if (data.success && data.reaction) {
         setReactions((prev) => {
