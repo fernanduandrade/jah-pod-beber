@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Beer, CheckCircle } from "lucide-react"
 import type { CheckInResponse } from "../types/api"
 import { ConfettiEffect } from "./ConfettiEffect"
+import { checkIn } from "../actions/checkin"
 
 export function CheckInButton() {
   const [isCheckingIn, setIsCheckingIn] = useState(false)
@@ -16,17 +17,7 @@ export function CheckInButton() {
     setIsCheckingIn(true)
 
     try {
-      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
-
-      const response = await fetch("/api/checkin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-timezone": timezone,
-        },
-      })
-
-      const data: CheckInResponse = await response.json()
+      const data: CheckInResponse = await checkIn()
 
       if (data.success) {
         setCheckedIn(true)
@@ -58,7 +49,7 @@ export function CheckInButton() {
           ${
             checkedIn
               ? "bg-green-500/20 border-2 border-green-500 text-green-600"
-              : "bg-gradient-to-br from-beer-yellow/20 via-beer-gold/30 to-beer-amber/20 border-2 border-beer-gold hover:border-beer-gold/80 hover:shadow-lg hover:shadow-beer-yellow/30 active:scale-95"
+              : "bg-linear-to-br from-beer-yellow/20 via-beer-gold/30 to-beer-amber/20 border-2 border-beer-gold hover:border-beer-gold/80 hover:shadow-lg hover:shadow-beer-yellow/30 active:scale-95"
           }
         `}
         aria-label="Fazer check-in"

@@ -119,7 +119,7 @@ pnpm lint
 ```
 jah-pod-beber/
 ├── app/                    # Diretório principal da aplicação Next.js (App Router)
-│   ├── api/                # Rotas de API
+|   ├── actions/            # Server actions
 │   ├── components/         # Componentes React reutilizáveis
 │   ├── globals.css         # Estilos globais
 │   ├── layout.tsx          # Layout raiz da aplicação

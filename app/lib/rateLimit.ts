@@ -1,5 +1,4 @@
-// Simple in-memory rate limiter
-// Note: In production, consider using Redis or a more robust solution
+import { headers } from "next/headers"
 
 interface RateLimitEntry {
   count: number
@@ -62,13 +61,15 @@ export function rateLimit(
   }
 }
 
-// Helper to get identifier from request
-export function getRateLimitIdentifier(request: Request): string {
-  // Use IP address or a combination of IP + user agent
-  const forwarded = request.headers.get("x-forwarded-for")
+export async function getRateLimitIdentifierAction(): Promise<string> {
+  const hdrs = await headers()
+  const forwarded = hdrs.get("x-forwarded-for")
   const ip = forwarded ? forwarded.split(",")[0].trim() : "unknown"
-  const userAgent = request.headers.get("user-agent") || "unknown"
-  
-  // Simple hash
+  const userAgent = hdrs.get("user-agent") || "unknown"
   return `${ip}:${userAgent.slice(0, 20)}`
+}
+
+export async function getAgent(): Promise<string> {
+  const hdrs = await headers()
+  return hdrs.get("user-agent") || "unknown"
 }
