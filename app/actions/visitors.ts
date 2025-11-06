@@ -1,6 +1,7 @@
 "use server";
 import { neon } from "@neondatabase/serverless";
 import { rateLimit, getRateLimitIdentifierAction, getAgent } from "../lib/rateLimit"
+import { broadcast } from "../lib/websocket"
 
 const queryFunction = neon(process.env.DATABASE_URL!)
 
@@ -23,12 +24,14 @@ export async function updateVisitors(): Promise<void> {
     const dayOfWeek = now.getUTCDay()
     const date = now.toISOString().split("T")[0]
 
-    await queryFunction`
+    const result = await queryFunction`
       UPDATE visitors 
       SET count = count + 1, updated_at = CURRENT_TIMESTAMP
       WHERE id = 1
       RETURNING count
     `
+    const newCount = result[0]?.count || 0
+
     try {
         const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone
         await queryFunction`
@@ -38,4 +41,8 @@ export async function updateVisitors(): Promise<void> {
     } catch {
       console.error("Error logging visit details:")
     }
+
+    try {
+      broadcast({ type: 'visitor_count_update', count: newCount })
+    } catch {}
 }

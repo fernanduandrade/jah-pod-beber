@@ -53,22 +53,66 @@ export function VisitorCounter({ onIncrement }: VisitorCounterProps) {
   }, [count])
 
   useEffect(() => {
-    updateVisitors()
+    let ws: WebSocket | null = null
+    let reconnectTimeout: NodeJS.Timeout | null = null
+    let shouldReconnect = true
 
-    const pollInterval = setInterval(async () => {
+    const loadInitialCount = async () => {
       try {
         const visitorsCounter = await getVisitors()
-        console.log(visitorsCounter)
         setCount(visitorsCounter)
       } catch (error) {
         console.error("Failed to fetch visitor count:", error)
-      }
-      finally {
+      } finally {
         setIsLoading(false)
       }
-    }, 3000)
+    }
 
-    return () => clearInterval(pollInterval)
+    const connectWebSocket = () => {
+      if (!shouldReconnect) return
+
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+      const wsUrl = `${protocol}//${window.location.host}/api/ws`
+      ws = new WebSocket(wsUrl)
+
+      ws.onopen = () => {}
+
+      ws.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data)
+          if (data.type === 'visitor_count_update' && typeof data.count === 'number') {
+            setCount(data.count)
+          }
+        } catch {
+        }
+      }
+
+      ws.onerror = (error) => {
+      }
+
+      ws.onclose = () => {
+        ws = null
+        if (shouldReconnect) {
+          reconnectTimeout = setTimeout(() => {
+            connectWebSocket()
+          }, 3000)
+        }
+      }
+    }
+
+    loadInitialCount()
+    updateVisitors()
+    connectWebSocket()
+
+    return () => {
+      shouldReconnect = false
+      if (reconnectTimeout) {
+        clearTimeout(reconnectTimeout)
+      }
+      if (ws) {
+        ws.close()
+      }
+    }
   }, [])
 
   if (isLoading) {
