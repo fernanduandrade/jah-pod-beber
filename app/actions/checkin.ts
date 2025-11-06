@@ -3,6 +3,7 @@
 import { neon } from "@neondatabase/serverless";
 import type { CheckInResponse } from "../types/api";
 import { getAgent } from "../lib/rateLimit";
+import { broadcast } from "../lib/websocket";
 
 const queryFunction = neon(process.env.DATABASE_URL!);
 
@@ -40,6 +41,12 @@ export async function checkIn(): Promise<CheckInResponse> {
       `;
     } catch (logError) {
       console.error("Error logging visit details:", logError);
+    }
+
+    try {
+      broadcast({ type: 'visitor_count_update', count });
+    } catch (error) {
+      console.error("Error broadcasting visitor count update:", error);
     }
 
     return {
