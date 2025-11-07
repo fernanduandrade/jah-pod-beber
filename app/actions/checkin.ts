@@ -3,7 +3,7 @@
 import { neon } from "@neondatabase/serverless";
 import type { CheckInResponse } from "../types/api";
 import { getAgent } from "../lib/rateLimit";
-import { broadcast } from "../lib/websocket";
+import { PUSHER_CHANNEL, PUSHER_EVENT, pusherServer } from "../lib/pusher";
 
 const queryFunction = neon(process.env.DATABASE_URL!);
 
@@ -25,40 +25,27 @@ export async function checkIn(): Promise<CheckInResponse> {
     `;
     const count = result[0]?.count || 0;
 
-    try {
-      await queryFunction`
+    await queryFunction`
         INSERT INTO check_ins (timezone, user_agent)
         VALUES (${timezone}, ${userAgent})
       `;
-    } catch (logError) {
-      console.error("Error logging check-in:", logError);
-    }
 
-    try {
-      await queryFunction`
-        INSERT INTO visitor_logs (hour, day_of_week, date, timezone, user_agent)
-        VALUES (${hour}, ${dayOfWeek}, ${date}, ${timezone}, ${userAgent})
-      `;
-    } catch (logError) {
-      console.error("Error logging visit details:", logError);
-    }
+    await queryFunction`
+      INSERT INTO visitor_logs (hour, day_of_week, date, timezone, user_agent)
+      VALUES (${hour}, ${dayOfWeek}, ${date}, ${timezone}, ${userAgent})
+    `;
 
-    try {
-      broadcast({ type: 'visitor_count_update', count });
-    } catch (error) {
-      console.error("Error broadcasting visitor count update:", error);
-    }
+    pusherServer.trigger(PUSHER_CHANNEL, PUSHER_EVENT, { count });
 
     return {
       success: true,
       count,
       message: "Check-in realizado com sucesso!",
     };
-  } catch (error) {
-    console.error("Error processing check-in:", error);
+  } catch {
     return {
       success: false,
-      error: "Failed to process check-in",
+      error: "falha ao realizar o check-in",
     };
   }
 }

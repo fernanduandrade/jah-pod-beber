@@ -50,6 +50,11 @@ Um projeto Next.js moderno com React 19, TypeScript e Tailwind CSS, incluindo um
 - **Vercel Analytics** - Analytics integrado
 - **Sonner** - Notificações toast elegantes
 
+### Real-time e Database
+
+- **Pusher** - Serviço de mensagens em tempo real (pub/sub)
+- **Neon Database** - Banco de dados PostgreSQL serverless
+
 ## 📋 Pré-requisitos
 
 - **Node.js** 18+ (recomendado: 22+)
@@ -75,6 +80,33 @@ cd jah-pod-beber
 ```bash
 pnpm install
 ```
+
+3. Configure as variáveis de ambiente:
+
+Crie um arquivo `.env.local` na raiz do projeto com as seguintes variáveis:
+
+```env
+# Database
+DATABASE_URL=sua_url_do_neon_database
+
+# Pusher Configuration
+# Obtenha suas credenciais em: https://pusher.com/
+# Plano gratuito: até 100 conexões simultâneas e 200k mensagens/dia
+PUSHER_APP_ID=seu_pusher_app_id
+PUSHER_SECRET=seu_pusher_secret
+NEXT_PUBLIC_PUSHER_KEY=sua_pusher_key
+NEXT_PUBLIC_PUSHER_CLUSTER=seu_pusher_cluster
+
+# App Configuration
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
+
+**Como obter as credenciais do Pusher:**
+
+1. Acesse [pusher.com](https://pusher.com/) e crie uma conta gratuita
+2. Crie um novo app no dashboard
+3. Escolha o cluster mais próximo da sua região
+4. Copie as credenciais (App ID, Key, Secret, Cluster) para o arquivo `.env.local`
 
 ## 🎮 Como usar
 
@@ -113,6 +145,42 @@ Execute o linter para verificar problemas no código:
 ```bash
 pnpm lint
 ```
+
+## 🚀 Deploy na Vercel
+
+Este projeto está otimizado para deploy na Vercel. O sistema de atualização em tempo real usa Pusher, que funciona perfeitamente em ambientes serverless.
+
+### Passos para deploy:
+
+1. **Faça push do código para o GitHub**
+
+2. **Conecte o repositório na Vercel:**
+   - Acesse [vercel.com](https://vercel.com)
+   - Importe seu repositório do GitHub
+   - A Vercel detectará automaticamente que é um projeto Next.js
+
+3. **Configure as variáveis de ambiente na Vercel:**
+   - No dashboard do projeto, vá em "Settings" > "Environment Variables"
+   - Adicione todas as variáveis do arquivo `.env.local`:
+     - `DATABASE_URL`
+     - `PUSHER_APP_ID`
+     - `PUSHER_SECRET`
+     - `NEXT_PUBLIC_PUSHER_KEY`
+     - `NEXT_PUBLIC_PUSHER_CLUSTER`
+     - `NEXT_PUBLIC_APP_URL` (use a URL do seu domínio na Vercel)
+
+4. **Deploy!**
+   - Clique em "Deploy"
+   - A Vercel fará o build e deploy automaticamente
+
+### Por que Pusher ao invés de WebSockets?
+
+A Vercel usa funções serverless que não mantêm conexões persistentes. O Pusher é um serviço de pub/sub em tempo real que:
+- ✅ Funciona perfeitamente em ambientes serverless
+- ✅ Plano gratuito generoso (100 conexões simultâneas)
+- ✅ Evita polling excessivo no banco de dados
+- ✅ Escalável automaticamente
+- ✅ Baixa latência global
 
 ## 📁 Estrutura do projeto
 
