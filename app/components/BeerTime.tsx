@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { Beer, Clock, Calendar } from "lucide-react"
 import Footer from "./footer"
 import { VisitorCounter } from "./VisitorsCounter"
-import { ShareButtons } from "./ShareButtons"
 import { AudioPlayer } from "./AudioPlayer"
 import { ConfettiEffect } from "./ConfettiEffect"
 import { CheckInButton } from "./CheckInButton"
@@ -115,10 +114,6 @@ export default function BeerTime() {
           </div>
 
           <div className="pt-8 space-y-6">
-            <div className="bg-card/80 backdrop-blur-sm border-2 border-beer-gold/30 rounded-xl p-6 hover:border-beer-gold hover:shadow-lg hover:shadow-beer-yellow/20 transition-all">
-              <ShareButtons />
-            </div>
-            
             <div className="bg-card/80 backdrop-blur-sm border-2 border-beer-gold/30 rounded-xl p-6 hover:border-beer-gold hover:shadow-lg hover:shadow-beer-yellow/20 transition-all">
               <MessageWall />
             </div>
