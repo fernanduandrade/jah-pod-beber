@@ -3,6 +3,8 @@
 import { useEffect, useState, useRef } from "react"
 import { Users, TrendingUp } from "lucide-react"
 import { getVisitors, updateVisitors } from "../actions/visitors"
+import { usePusher } from "../hooks/usePusher"
+
 interface VisitorCounterProps {
   onIncrement?: () => void
 }
@@ -13,6 +15,7 @@ export function VisitorCounter({ onIncrement }: VisitorCounterProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [isIncrementing, setIsIncrementing] = useState(false)
   const previousCountRef = useRef<number>(0)
+  const { count: pusherCount } = usePusher()
 
   useEffect(() => {
     if (count === null)
@@ -53,66 +56,25 @@ export function VisitorCounter({ onIncrement }: VisitorCounterProps) {
   }, [count])
 
   useEffect(() => {
-    let ws: WebSocket | null = null
-    let reconnectTimeout: NodeJS.Timeout | null = null
-    let shouldReconnect = true
+    if (pusherCount !== null) {
+      setCount(pusherCount)
+    }
+  }, [pusherCount])
 
+  useEffect(() => {
     const loadInitialCount = async () => {
       try {
         const visitorsCounter = await getVisitors()
         setCount(visitorsCounter)
       } catch (error) {
-        console.error("Failed to fetch visitor count:", error)
+        console.error("falha ao buscar o contador de visitantes:", error)
       } finally {
         setIsLoading(false)
       }
     }
 
-    const connectWebSocket = () => {
-      if (!shouldReconnect) return
-
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
-      const wsUrl = `${protocol}//${window.location.host}/api/ws`
-      ws = new WebSocket(wsUrl)
-
-      ws.onopen = () => {}
-
-      ws.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data)
-          if (data.type === 'visitor_count_update' && typeof data.count === 'number') {
-            setCount(data.count)
-          }
-        } catch {
-        }
-      }
-
-      ws.onerror = (error) => {
-      }
-
-      ws.onclose = () => {
-        ws = null
-        if (shouldReconnect) {
-          reconnectTimeout = setTimeout(() => {
-            connectWebSocket()
-          }, 3000)
-        }
-      }
-    }
-
     loadInitialCount()
     updateVisitors()
-    connectWebSocket()
-
-    return () => {
-      shouldReconnect = false
-      if (reconnectTimeout) {
-        clearTimeout(reconnectTimeout)
-      }
-      if (ws) {
-        ws.close()
-      }
-    }
   }, [])
 
   if (isLoading) {
