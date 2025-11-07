@@ -1,0 +1,69 @@
+{
+  "name": "Já Pode Beber? - A Resposta é Sempre SIM!",
+  "short_name": "Já Pode Beber",
+  "description": "Descubra se já é hora da cerveja gelada! A resposta é sempre SIM! Site divertido com contador ao vivo, mural de mensagens e muito mais.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f59e0b",
+  "orientation": "portrait-primary",
+  "categories": ["entertainment", "social", "lifestyle"],
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/beer.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/beer.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "label": "Já Pode Beber - Tela Principal"
+    }
+  ],
+  "share_target": {
+    "action": "/",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
+  "shortcuts": [
+    {
+      "name": "Ver Contador",
+      "short_name": "Contador",
+      "description": "Ver quantas pessoas estão bebendo agora",
+      "url": "/#contador",
+      "icons": [{ "src": "/beer.png", "sizes": "512x512" }]
+    },
+    {
+      "name": "Mural de Mensagens",
+      "short_name": "Mensagens",
+      "description": "Deixe sua mensagem",
+      "url": "/#mensagens",
+      "icons": [{ "src": "/beer.png", "sizes": "512x512" }]
+    },
+    {
+      "name": "Estatísticas",
+      "short_name": "Stats",
+      "description": "Ver estatísticas do site",
+      "url": "/stats",
+      "icons": [{ "src": "/beer.png", "sizes": "512x512" }]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
+
