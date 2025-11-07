@@ -47,6 +47,13 @@ export default function Footer() {
           {/* Navigation Links */}
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
             <a
+              href="/"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              Início
+            </a>
+            <span className="text-muted-foreground">•</span>
+            <a
               href="/stats"
               className="text-muted-foreground hover:text-primary transition-colors"
             >
